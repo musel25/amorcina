@@ -2,8 +2,8 @@ import { MESSAGES, RARE_MESSAGES } from './messages.js';
 
 const INTENSITY_CONFIG = {
   whisper: { dailyCap: 1,  cooldownMs: 0,           rarePct: 0.03 },
-  gentle:  { dailyCap: 3,  cooldownMs: 90 * 60000,  rarePct: 0.05 },
-  cozy:    { dailyCap: 5,  cooldownMs: 45 * 60000,  rarePct: 0.07 },
+  gentle:  { dailyCap: 3,  cooldownMs: 45 * 60000,  rarePct: 0.05 },
+  cozy:    { dailyCap: 5,  cooldownMs: 20 * 60000,  rarePct: 0.07 },
   test:    { dailyCap: 50, cooldownMs: 0,            rarePct: 0.30 },
 };
 
