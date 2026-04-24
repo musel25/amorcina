@@ -170,15 +170,6 @@ async function handleAlarmTick() {
   const today = todayStr();
   const shownToday = s.shownTodayDate === today ? (s.shownToday || 0) : 0;
   const cutoff30 = now - 30 * 24 * 3600000;
-  const newHistory = [...(s.history || []).filter(h => h.shownAt > cutoff30), { id, shownAt: now }];
-
-  await chrome.storage.local.set({
-    history: newHistory,
-    lastContext: context,
-    shownToday: shownToday + 1,
-    shownTodayDate: today,
-    firstMessageShown: s.firstRunShown ? true : (s.firstMessageShown || false),
-  });
 
   try {
     await chrome.tabs.sendMessage(s.lastTabId, {
@@ -189,8 +180,18 @@ async function handleAlarmTick() {
       isLateNight: isLateNight(),
     });
   } catch {
-    // Tab closed or navigated away — silent skip
+    // Tab closed or navigated away — don't count this as shown
+    return;
   }
+
+  const newHistory = [...(s.history || []).filter(h => h.shownAt > cutoff30), { id, shownAt: now }];
+  await chrome.storage.local.set({
+    history: newHistory,
+    lastContext: context,
+    shownToday: shownToday + 1,
+    shownTodayDate: today,
+    firstMessageShown: s.firstRunShown ? true : (s.firstMessageShown || false),
+  });
 
   if (s.intensity === 'test') {
     setTimeout(handleAlarmTick, 10000);
