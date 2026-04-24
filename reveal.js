@@ -10,7 +10,7 @@
     await chrome.storage.local.set({
       firstRunShown: true,
       firstRunAt: now,
-      backoffUntil: now + 20 * 60 * 1000, // 20-minute silence after reveal
+      backoffUntil: now + 30 * 1000, // 30-second silence after reveal → first popout within ~1 min
     });
     window.close();
   });

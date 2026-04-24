@@ -8,13 +8,17 @@ const INTENSITY_CONFIG = {
 };
 
 const DOMAIN_MAP = [
-  { domains: ['github.com','gitlab.com','bitbucket.org','stackoverflow.com','replit.com','codesandbox.io'], ctx: 'coding' },
-  { domains: ['tiktok.com','instagram.com','x.com','twitter.com','reddit.com','facebook.com','threads.net'], ctx: 'social' },
-  { domains: ['youtube.com','netflix.com','twitch.tv','hulu.com','disneyplus.com'], ctx: 'video' },
+  { domains: ['github.com','gitlab.com','bitbucket.org','stackoverflow.com','replit.com','codesandbox.io','claude.ai','chatgpt.com','v0.dev','cursor.sh'], ctx: 'coding' },
+  { domains: ['tiktok.com','instagram.com','x.com','twitter.com','reddit.com','facebook.com','threads.net','pinterest.com','pinterest.es','pinterest.co.uk','tumblr.com','snapchat.com','bereal.com'], ctx: 'social' },
+  { domains: ['youtube.com','netflix.com','twitch.tv','hulu.com','disneyplus.com','primevideo.com','hbomax.com','max.com','crunchyroll.com','vimeo.com'], ctx: 'video' },
   { domains: ['mail.google.com','outlook.live.com','outlook.office.com','fastmail.com','proton.me'], ctx: 'email' },
-  { domains: ['docs.google.com','notion.so','linear.app','quip.com','dropbox.com'], ctx: 'docs' },
-  { domains: ['amazon.com','amazon.co.uk','amazon.de','amazon.fr','amazon.es','amazon.it','amazon.ca','amazon.com.mx','etsy.com','ebay.com','shopify.com'], ctx: 'shopping' },
-  { domains: ['coursera.org','duolingo.com','khanacademy.org','udemy.com','edx.org'], ctx: 'learning' },
+  { domains: ['docs.google.com','drive.google.com','notion.so','linear.app','quip.com','dropbox.com','canva.com','figma.com','miro.com','airtable.com'], ctx: 'docs' },
+  { domains: ['calendar.google.com','fantastical.app','cron.com','cal.com','calendly.com'], ctx: 'planning' },
+  { domains: ['spotify.com','soundcloud.com','deezer.com','music.apple.com','tidal.com','music.youtube.com'], ctx: 'music' },
+  { domains: ['meet.google.com','zoom.us','teams.microsoft.com','webex.com','whereby.com','discord.com'], ctx: 'work' },
+  { domains: ['google.com','bing.com','duckduckgo.com','search.yahoo.com','perplexity.ai'], ctx: 'search' },
+  { domains: ['amazon.com','amazon.co.uk','amazon.de','amazon.fr','amazon.es','amazon.it','amazon.ca','amazon.com.mx','etsy.com','ebay.com','shopify.com','zara.com','asos.com','shein.com','aliexpress.com'], ctx: 'shopping' },
+  { domains: ['coursera.org','duolingo.com','khanacademy.org','udemy.com','edx.org','skillshare.com','masterclass.com','brilliant.org'], ctx: 'learning' },
 ];
 
 const EASTER_EGG_DOMAINS = ['youtube.com', 'instagram.com', 'github.com'];
