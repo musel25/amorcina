@@ -1,0 +1,223 @@
+/* Shadow DOM reset — prevents host-page styles from bleeding in */
+:host {
+  all: initial;
+  display: block;
+}
+
+/* Font faces — __FONT_BASE__/ is replaced at runtime with the extension URL */
+@font-face {
+  font-family: 'Caveat';
+  src: url('__FONT_BASE__/Caveat-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('__FONT_BASE__/InterTight-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('__FONT_BASE__/InterTight-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design tokens (daytime) ───────────────────── */
+.toast {
+  --paper:        #f6efe6;
+  --surface:      #fffaf3;
+  --ink:          #2a1f1a;
+  --ink-soft:     #6b5a4f;
+  --ink-mute:     #a8998c;
+  --accent:       oklch(0.68 0.12 18);
+  --accent-soft:  oklch(0.92 0.04 20);
+  --accent-deep:  oklch(0.52 0.14 18);
+  --line:         rgba(42, 31, 26, 0.10);
+  --line-strong:  rgba(42, 31, 26, 0.18);
+  --shadow-toast: 0 8px 20px -6px rgba(42, 31, 26, 0.18),
+                  0 2px 4px rgba(42, 31, 26, 0.08);
+}
+
+/* ── Dim variant (after 22:00) ─────────────────── */
+.toast[data-dim] {
+  --surface:      #242029;
+  --ink:          #f1ece1;
+  --ink-soft:     #c4b8a7;
+  --ink-mute:     #85796a;
+  --accent:       oklch(0.72 0.10 22);
+  --accent-soft:  oklch(0.38 0.06 22);
+  --accent-deep:  oklch(0.82 0.12 22);
+  --line:         rgba(241, 236, 225, 0.10);
+  --shadow-toast: 0 8px 20px -6px rgba(0, 0, 0, 0.55),
+                  0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Toast base ───────────────────────────────── */
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  max-width: 300px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-toast);
+  transform-origin: bottom right;
+  pointer-events: auto;
+  cursor: default;
+  animation: toastIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  box-sizing: border-box;
+}
+
+/* Tape strip */
+.toast::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 12px;
+  background: rgba(230, 168, 154, 0.35);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Exit state */
+.toast.exit {
+  animation: toastOut 260ms ease forwards;
+}
+
+/* ── Rare toast overrides ─────────────────────── */
+.toast.rare {
+  max-width: 360px;
+  padding: 22px 22px 20px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--accent-soft) 100%);
+  animation: rareIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Message text ─────────────────────────────── */
+.msg {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+}
+
+.rare .msg {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* ── Signature ────────────────────────────────── */
+.from {
+  display: block;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 6px;
+}
+
+/* ── Close button ─────────────────────────────── */
+.x {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--ink-mute);
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 150ms;
+  font-family: sans-serif;
+}
+
+.x:hover {
+  background: var(--line);
+}
+
+/* ── Floating hearts (rare) ───────────────────── */
+.heart {
+  position: absolute;
+  bottom: 14px;
+  color: var(--accent);
+  font-size: 10px;
+  pointer-events: none;
+  animation: floatHeart 2.6s ease-out infinite;
+}
+
+/* ── Save button (rare) ───────────────────────── */
+.save-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent-deep);
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+
+.save-btn:not(:disabled):hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.save-btn.saved,
+.save-btn:disabled {
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  cursor: default;
+}
+
+/* ── Keyframes ────────────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) rotate(-1.5deg) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    rotate(-1.5deg) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0)   rotate(-1.5deg) scale(1); }
+  to   { opacity: 0; transform: translateY(6px)  rotate(-1.5deg) scale(0.98); }
+}
+
+@keyframes rareIn {
+  from { opacity: 0; transform: translateY(20px) rotate(-1.5deg) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    rotate(-1.5deg) scale(1); }
+}
+
+@keyframes floatHeart {
+  0%   { opacity: 0; transform: translateY(0)     scale(0.6); }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-70px)  scale(1); }
+}

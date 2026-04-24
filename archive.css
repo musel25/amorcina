@@ -1,0 +1,210 @@
+@font-face {
+  font-family: 'Caveat';
+  src: url('fonts/Caveat-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('fonts/Caveat-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tokens ────────────────────────────────────── */
+:root {
+  --paper:        #f6efe6;
+  --paper-deep:   #ece2d3;
+  --surface:      #fffaf3;
+  --ink:          #2a1f1a;
+  --ink-soft:     #6b5a4f;
+  --ink-mute:     #a8998c;
+  --accent:       oklch(0.68 0.12 18);
+  --accent-deep:  oklch(0.52 0.14 18);
+  --line:         rgba(42, 31, 26, 0.10);
+  --line-strong:  rgba(42, 31, 26, 0.18);
+  --r-lg: 14px; --r-pill: 999px;
+}
+
+:root[data-dim] {
+  --paper:        #1b1820;
+  --paper-deep:   #14121a;
+  --surface:      #242029;
+  --ink:          #f1ece1;
+  --ink-soft:     #c4b8a7;
+  --ink-mute:     #85796a;
+  --accent:       oklch(0.72 0.10 22);
+  --accent-deep:  oklch(0.82 0.12 22);
+  --line:         rgba(241,236,225,0.10);
+  --line-strong:  rgba(241,236,225,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* ── Page shell ────────────────────────────────── */
+.page {
+  padding: 40px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Page header ───────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.page-sub {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.page-sub strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.back-btn {
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  border-radius: var(--r-pill);
+  padding: 8px 16px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms, color 150ms;
+}
+
+.back-btn:hover {
+  background: var(--paper-deep);
+  color: var(--ink);
+}
+
+/* ── Notes grid ────────────────────────────────── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* ── Note card ─────────────────────────────────── */
+.note-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  transition: transform 200ms;
+  /* --r set per-card inline for deterministic tilt */
+  transform: rotate(var(--r, 0deg));
+}
+
+.note-card:hover {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.note-text {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.note-date {
+  display: block;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 14px;
+}
+
+.note-remove {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--ink-mute);
+  cursor: pointer;
+  padding: 2px 4px;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+.note-card:hover .note-remove {
+  opacity: 1;
+}
+
+.note-remove:hover {
+  color: var(--ink-soft);
+}
+
+/* ── Empty state ───────────────────────────────── */
+.empty-state {
+  padding: 80px 0;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--ink-mute);
+}

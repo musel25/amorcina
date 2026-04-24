@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>notas guardadas — amorcina</title>
+  <link rel="icon" type="image/png" href="icons/icon-32.png">
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <div class="header-left">
+        <h1 class="page-title">notas guardadas</h1>
+        <p class="page-sub">las que guardaste · <strong id="note-count">0</strong> total</p>
+      </div>
+      <button class="back-btn" id="back-btn">← volver</button>
+    </header>
+
+    <div class="notes-grid" id="notes-grid">
+      <!-- Cards injected by archive.js -->
+    </div>
+
+    <div class="empty-state" id="empty-state" hidden>
+      nada guardado aún. las buenas aparecerán aquí.
+    </div>
+  </div>
+
+  <script src="archive.js"></script>
+</body>
+</html>

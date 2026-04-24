@@ -1,0 +1,214 @@
+@font-face {
+  font-family: 'Caveat';
+  src: url('fonts/Caveat-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Tight';
+  src: url('fonts/InterTight-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tokens ────────────────────────────────────── */
+:root {
+  --paper:        #f6efe6;
+  --paper-deep:   #ece2d3;
+  --surface:      #fffaf3;
+  --ink:          #2a1f1a;
+  --ink-soft:     #6b5a4f;
+  --ink-mute:     #a8998c;
+  --accent:       oklch(0.68 0.12 18);
+  --accent-soft:  oklch(0.92 0.04 20);
+  --accent-deep:  oklch(0.52 0.14 18);
+  --line:         rgba(42, 31, 26, 0.10);
+  --shadow-reveal: 0 40px 80px -20px rgba(0, 0, 0, 0.40);
+  --r-md: 12px; --r-xxl: 20px;
+}
+
+:root[data-dim] {
+  --paper:        #1b1820;
+  --paper-deep:   #14121a;
+  --surface:      #242029;
+  --ink:          #f1ece1;
+  --ink-soft:     #c4b8a7;
+  --ink-mute:     #85796a;
+  --accent:       oklch(0.72 0.10 22);
+  --accent-soft:  oklch(0.38 0.06 22);
+  --accent-deep:  oklch(0.82 0.12 22);
+  --line:         rgba(241,236,225,0.10);
+  --shadow-reveal: 0 40px 80px -20px rgba(0,0,0,0.8);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: var(--paper);
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--ink);
+}
+
+/* ── Overlay ───────────────────────────────────── */
+.overlay {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  animation: overlayIn 600ms ease both;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Card ──────────────────────────────────────── */
+.card {
+  position: relative;
+  width: 460px;
+  max-width: 100%;
+  padding: 42px 44px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xxl);
+  box-shadow: var(--shadow-reveal);
+  animation: revealIn 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes revealIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ── Stamp ─────────────────────────────────────── */
+.stamp {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 22px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Heading ───────────────────────────────────── */
+.heading {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 12px 0 16px;
+}
+
+/* ── Body text ─────────────────────────────────── */
+.body-text {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+/* ── Handwritten line ──────────────────────────── */
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 18px 0 8px;
+}
+
+/* ── Signature ─────────────────────────────────── */
+.signature {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--accent-deep);
+  text-align: right;
+  margin-bottom: 4px;
+}
+
+/* ── Promises box ──────────────────────────────── */
+.promises {
+  background: var(--paper-deep);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  margin: 18px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.promise-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.check {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── "got it" button ───────────────────────────── */
+.got-it {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 150ms, transform 150ms;
+}
+
+.got-it:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
+}

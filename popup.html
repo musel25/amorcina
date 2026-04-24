@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>amorcina</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="wordmark">amorcina<span class="mono">&lt;3</span></div>
+      <div class="subtitle">made for val</div>
+    </div>
+    <div class="header-right">
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-label" id="status-label">escuchando</span>
+    </div>
+  </header>
+
+  <!-- On/off row -->
+  <section class="row" id="toggle-row">
+    <div class="row-left">
+      <div class="row-label">notas de müsel</div>
+      <div class="row-sub">mensajitos, cuando estés por ahí</div>
+    </div>
+    <button class="toggle" id="enabled-toggle" role="switch" aria-checked="true" aria-label="Activar notas">
+      <span class="knob"></span>
+    </button>
+  </section>
+
+  <!-- Intensity -->
+  <section class="row col-section">
+    <div class="section-label">INTENSIDAD</div>
+    <div class="intensity-grid" id="intensity-grid">
+      <button class="intensity-cell" data-value="whisper">
+        <span class="intensity-emoji">🤫</span>
+        <span class="intensity-name">susurro</span>
+        <span class="intensity-cap">1/día</span>
+      </button>
+      <button class="intensity-cell" data-value="gentle">
+        <span class="intensity-emoji">💌</span>
+        <span class="intensity-name">suave</span>
+        <span class="intensity-cap">2–3/día</span>
+      </button>
+      <button class="intensity-cell" data-value="cozy">
+        <span class="intensity-emoji">🫶</span>
+        <span class="intensity-name">acogedor</span>
+        <span class="intensity-cap">4–5/día</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Quiet hours -->
+  <section class="row col-section">
+    <div class="section-label">HORAS TRANQUILAS</div>
+    <div class="time-row">
+      <input type="time" class="time-input" id="quiet-start" value="22:00" aria-label="Quiet start time">
+      <span class="time-sep">→</span>
+      <input type="time" class="time-input" id="quiet-end" value="09:00" aria-label="Quiet end time">
+    </div>
+  </section>
+
+  <!-- Pause -->
+  <section class="row col-section">
+    <div class="section-label">PAUSA</div>
+    <div class="pause-grid" id="pause-grid">
+      <button class="pause-btn" data-value="1h">1 hora</button>
+      <button class="pause-btn" data-value="today">hoy</button>
+      <button class="pause-btn" data-value="tmrw">hasta mañana</button>
+    </div>
+  </section>
+
+  <!-- Counts row -->
+  <section class="row counts-row">
+    <span class="counts-text">
+      <strong id="shown-today">0</strong> hoy · <strong id="saved-count">0</strong> guardadas
+    </span>
+    <button class="archive-link" id="archive-link">ver archivo →</button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-credit">hecho por müsel 💛</span>
+  </footer>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
